@@ -1,0 +1,18 @@
+1ere section
+-un header: à gauche le logo et à droite les liens vers les sections "à propos de nous", "promotions","contact".
+-gauche une phrase : "Retrouvez les saveurs de votre pays, ici à Bruxelles".
+-droite : deux images défilent automatiquement montrant l'entrée des deux magasin.
+
+2eme section : à propos de nous.
+-cote gauche : des images défilent automatiquement affichant les rayons des magasins.
+-cote droite : texte qui explique que c'est un supermarché qui propose des produit éthniques.
+
+3eme section : promotions.
+-cote gauche : texte qui explique que pour être au courant des promotions, il faut suivre les pages du supermarché sur facebook et instagram.
+-cote droite une image d'un produit en promotion.
+
+4eme section : contact.
+-donnez les adresses des supermarchés dans une carte.
+-donner leurs heures d'ouvertures.
+-l'adresse mail.
+-numéro de téléphone.

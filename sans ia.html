@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  /*background-color: #EAF5DF;*/
+}
+
+header {
+  background-color: #EAF5DF;
+}
+
+.header_container{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    align-items: center;
+    height: 10vh;
+}
+
+.logo_part{
+    flex:1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.nav_part{
+    flex:2;
+    background-color: #EAF5DF;
+    text-align: center;
+}
+
+.language_part{
+    flex:1;
+    text-align: center;
+    
+}
+
+header a {
+  color: #83c03f;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 60px;
+  border-radius: 4px;
+  height: 100px;
+}
+
+header a:hover {
+  color: #476B49;
+}
+/*
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+*/
+.header-right {
+  float: right;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_menu {
+    display: none; /* caché par défaut */
+    position: absolute;
+    top: 100%; /* juste en dessous du <a> */
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 100px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.dropdown_menu li {
+    text-align: left;
+}
+
+.dropdown_menu li a {
+    display: block;
+    padding: 8px 12px;
+    color: #83c03f;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: normal; /* évite le line-height: 60px hérité de "header a" */
+    height: auto; /* pareil, pour ignorer le height: 100px hérité */
+}
+
+.dropdown_menu li a:hover {
+    background-color: #EAF5DF;
+}
+
+.dropdown:hover .dropdown_menu {
+    display: block; /* apparaît au survol */
+}
+
+.dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown a img {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown_menu li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown_menu li a img {
+    display: block;
+    width: 20px;
+    height: auto;
+}
+
+
+
+
+/*
+.home{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 75%;
+    margin-left: 130px;
+    margin-right: 130px;
+}
+
+.home_explaining{
+    height: 800px;
+    display: flex;
+    
+    font-size: 50px;
+    flex-direction: column;
+}
+.home_picture{
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home_picture img{
+    border-radius: 30px;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-right {
+    float: none;
+  }
+}
+*/
+</style>
+<script>
+    function switchToFrench(){
+        document.getElementById("languageOfTheWebsite").textContent = "FR"
+        console.log(document.getElementById("flagLanguageWebsite").src)
+        document.getElementById("flagLanguageWebsite").src = "flag-for-flag-france-svgrepo-com.svg"
+    };
+
+    function switchToEnglish(){
+        document.getElementById("languageOfTheWebsite").textContent = "EN"
+        document.getElementById("flagLanguageWebsite").src = "flag-for-flag-united-kingdom-svgrepo-com.svg"
+    };
+
+    function switchToDutch(){
+        document.getElementById("languageOfTheWebsite").textContent = "NL"
+        document.getElementById("flagLanguageWebsite").src = "flag-for-flag-netherlands-svgrepo-com.svg"
+    };
+</script>
+</head>
+<body>
+    <header>
+        <div class="header_container">
+            <div class="logo_part">
+                <a href="#" class="logo"><img src="Logo sans titre transparent.png" alt="logo" width="100px"></a>
+            </div>
+            <div class="nav_part">
+                <a class="active" href="#">Accueil</a>
+                <a href="#">Produits</a>
+                <a href="#">Promotion</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="language_part">
+                <div class="dropdown">
+                    <a  onclick="clickChangeLanguage()">
+                        <img src="flag-for-flag-france-svgrepo-com.svg" alt="Flag" width="20" id="flagLanguageWebsite">
+                        <span id="languageOfTheWebsite">FR</span>
+                    </a>
+                    <ul class="dropdown_menu">
+                        <li><a  onclick="switchToFrench()"><img src="flag-for-flag-france-svgrepo-com.svg" alt="Français" width="20"> FR</a></li>
+                        <li><a  onclick="switchToEnglish()"><img src="flag-for-flag-united-kingdom-svgrepo-com.svg" alt="Anglais" width="20"> EN</a></li>
+                        <li><a  onclick="switchToDutch()"><img src="flag-for-flag-netherlands-svgrepo-com.svg" alt="Néerlandais" width="20"> NL</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+<!--
+<div class="home">
+    <div class ="home_explaining">
+        <p>
+            Tatli'm<br>
+            Retrouvez les saveurs de votre pays,<br>
+            ici à Bruxelles
+        </p>
+    </div>
+    <div class ="home_picture">
+        <img src="parking tatlim.jpg" alt="parking">
+    </div>
+</div>
+-->
+</body>
+</html>
+

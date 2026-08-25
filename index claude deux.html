@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tatlim Market — Saveurs du monde à Bruxelles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#050505;
+    --ink-soft:#0a130b;
+    --paper:#f4f1e6;
+    --paper-dim:#e9e4d4;
+    --green:#83c03f;
+    --green-dark:#09853e;
+    --cream:#f4f1e6;
+    --cream-dim:rgba(244,241,230,.62);
+    --ink-dim:rgba(5,5,5,.6);
+    --font-display:'Fraunces', serif;
+    --font-body:'Work Sans', sans-serif;
+    --gap:clamp(24px, 5vw, 72px);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--ink);
+    color:var(--cream);
+    overflow-x:hidden;
+  }
+
+  @media (min-width:901px){
+    html{scroll-snap-type:y proximity;}
+    .section{scroll-snap-align:start;}
+  }
+
+  img{display:block; width:100%; height:100%; object-fit:cover;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit; border:none; background:none; cursor:pointer;}
+
+  /* ---------- shared ---------- */
+  .eyebrow{
+    font-family:var(--font-body);
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    font-size:.72rem;
+    font-weight:600;
+    color:var(--green);
+  }
+  .section{
+    min-height:100vh;
+    min-height:100svh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    padding:0 clamp(20px, 6vw, 80px);
+  }
+  .section.alt-bg{background:var(--ink-soft);}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    padding:.95em 1.8em;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.95rem;
+    transition:transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .btn-solid{
+    background:var(--green);
+    color:var(--ink);
+  }
+  .btn-solid:hover{background:var(--cream); transform:translateY(-2px);}
+  .btn-outline{
+    border:1px solid rgba(244,241,230,.35);
+    color:var(--cream);
+  }
+  .btn-outline:hover{border-color:var(--green); color:var(--green); transform:translateY(-2px);}
+
+  /* ---------- arch frame (signature element) ---------- */
+  .arch-frame{
+    position:relative;
+    overflow:hidden;
+    clip-path:url(#tatlim-arch);
+    background:var(--ink-soft);
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.6);
+  }
+  .arch-frame::after{
+    content:'';
+    position:absolute; inset:0;
+    box-shadow:inset 0 0 0 2px rgba(244,241,230,.14);
+    pointer-events:none;
+  }
+  .carousel{position:relative;}
+  .carousel img{
+    position:absolute; inset:0;
+    opacity:0;
+    transition:opacity 1.4s ease;
+  }
+  .carousel img.is-active{opacity:1; position:relative;}
+  .carousel img:not(.is-active){position:absolute;}
+
+  /* ---------- header ---------- */
+  .site-header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px clamp(20px, 6vw, 80px);
+    background:linear-gradient(to bottom, rgba(5,5,5,.85), rgba(5,5,5,0));
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:1.5rem;
+    color:var(--cream);
+    letter-spacing:.01em;
+  }
+  .logo span{color:var(--green);}
+  .main-nav ul{display:flex; gap:clamp(18px, 3vw, 42px);}
+  .main-nav a{
+    font-size:.85rem;
+    font-weight:500;
+    letter-spacing:.03em;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .main-nav a::after{
+    content:'';
+    position:absolute; left:0; right:100%; bottom:0;
+    height:1px; background:var(--green);
+    transition:right .3s ease;
+  }
+  .main-nav a:hover::after{right:0;}
+  .nav-toggle{
+    display:none;
+    width:26px; height:20px;
+    position:relative;
+    z-index:110;
+  }
+  .nav-toggle span{
+    position:absolute; left:0; right:0; height:2px;
+    background:var(--cream); border-radius:2px;
+    transition:all .3s ease;
+  }
+  .nav-toggle span:nth-child(1){top:0;}
+  .nav-toggle span:nth-child(2){top:9px;}
+  .nav-toggle span:nth-child(3){top:18px;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(9px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:100px;}
+  .hero-grid{
+    flex:1;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:var(--gap);
+    align-items:center;
+    padding-bottom:60px;
+  }
+  .hero-text h1{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(2.2rem, 4.6vw, 4rem);
+    line-height:1.08;
+    margin:20px 0 26px;
+    color:var(--cream);
+  }
+  .hero-text h1 em{color:var(--green); font-style:italic;}
+  .hero-text p{
+    font-size:1.05rem;
+    color:var(--cream-dim);
+    max-width:44ch;
+    margin-bottom:34px;
+    line-height:1.6;
+  }
+  .hero-visual{aspect-ratio:4/5; max-width:460px; margin-left:auto; width:100%;}
+
+  /* ---------- about ---------- */
+  .about-grid{
+    flex:1;
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:var(--gap);
+    align-items:center;
+    padding:100px 0 60px;
+  }
+  .about-visual{aspect-ratio:4/5; max-width:440px; width:100%;}
+  .about-text h2{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.9rem, 3.4vw, 3rem);
+    margin:16px 0 22px;
+  }
+  .about-text p{
+    color:var(--cream-dim);
+    line-height:1.75;
+    font-size:1.02rem;
+    max-width:52ch;
+    margin-bottom:18px;
+  }
+  .origin-tags{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:24px;
+  }
+  .origin-tags li{
+    font-size:.8rem;
+    letter-spacing:.03em;
+    padding:.5em 1.1em;
+    border:1px solid rgba(244,241,230,.25);
+    border-radius:999px;
+    color:var(--cream-dim);
+  }
+
+  /* ---------- promotions ---------- */
+  .promo-grid{
+    flex:1;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:var(--gap);
+    align-items:center;
+    padding:100px 0 60px;
+  }
+  .promo-text h2{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.9rem, 3.4vw, 3rem);
+    margin:16px 0 22px;
+  }
+  .promo-text p{
+    color:var(--cream-dim);
+    line-height:1.75;
+    font-size:1.02rem;
+    max-width:50ch;
+    margin-bottom:34px;
+  }
+  .social-row{display:flex; flex-wrap:wrap; gap:14px;}
+  .promo-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    max-width:440px;
+    width:100%;
+    margin-left:auto;
+  }
+  .promo-badge{
+    position:absolute;
+    top:-18px; right:6px;
+    z-index:5;
+    width:96px; height:96px;
+    border-radius:50%;
+    background:var(--green-dark);
+    color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+    font-family:var(--font-display);
+    font-style:italic;
+    text-align:center;
+    line-height:1.05;
+    box-shadow:0 14px 30px -8px rgba(9,133,62,.6);
+    transform:rotate(8deg);
+  }
+  .promo-badge b{font-size:1.5rem; font-style:normal; font-weight:600;}
+  .promo-badge span{font-size:.62rem; letter-spacing:.05em; text-transform:uppercase;}
+
+  /* ---------- contact ---------- */
+  .contact{padding-top:100px; padding-bottom:60px;}
+  .contact-head h2{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.9rem, 3.4vw, 3rem);
+    margin:16px 0 40px;
+  }
+  .contact-grid{
+    flex:1;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(20px, 3vw, 36px);
+  }
+  .store-card{
+    background:rgba(244,241,230,.04);
+    border:1px solid rgba(244,241,230,.12);
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .store-map{width:100%; aspect-ratio:16/9; filter:grayscale(.4) invert(.92) contrast(.9);}
+  .store-map iframe{width:100%; height:100%; border:0; display:block;}
+  .store-info{padding:22px 24px 26px;}
+  .store-info h3{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:1.3rem;
+    margin-bottom:10px;
+    color:var(--green);
+  }
+  .store-info p{
+    font-size:.92rem;
+    color:var(--cream-dim);
+    line-height:1.65;
+    margin-bottom:6px;
+  }
+  .store-info .placeholder{color:rgba(131,192,63,.85); font-style:italic;}
+
+  .contact-footer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px 60px;
+    margin-top:44px;
+    padding-top:32px;
+    border-top:1px solid rgba(244,241,230,.12);
+  }
+  .contact-footer .item .eyebrow{display:block; margin-bottom:6px;}
+  .contact-footer .item a, .contact-footer .item span{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--cream);
+  }
+
+  .site-footer{
+    text-align:center;
+    padding:26px;
+    font-size:.78rem;
+    color:var(--cream-dim);
+    background:var(--ink);
+    border-top:1px solid rgba(244,241,230,.08);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .nav-toggle{display:block;}
+    .main-nav{
+      position:fixed; inset:0;
+      background:var(--ink);
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none;
+      transition:opacity .3s ease;
+      z-index:105;
+    }
+    .main-nav.open{opacity:1; pointer-events:auto;}
+    .main-nav ul{flex-direction:column; text-align:center; gap:30px;}
+    .main-nav a{font-size:1.3rem; font-family:var(--font-display); font-style:italic;}
+
+    .hero-grid, .about-grid, .promo-grid{
+      grid-template-columns:1fr;
+      padding-top:120px;
+    }
+    .hero-visual, .about-visual, .promo-visual{
+      max-width:340px; margin:0 auto;
+    }
+    .about-grid{padding-top:100px;}
+    .about-visual{order:2;}
+    .about-text{order:1;}
+    .contact-grid{grid-template-columns:1fr;}
+    .promo-visual{margin-top:20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .carousel img{transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- hidden SVG defining the arch clip-path used throughout the site -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="tatlim-arch" clipPathUnits="objectBoundingBox">
+      <path d="M0,1 L0,0.42 C0,0.19 0.2,0 0.5,0 C0.8,0 1,0.19 1,0.42 L1,1 Z" />
+    </clipPath>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <a href="#accueil" class="logo"><img src="logo.png" alt="logo" width="100px"></a>
+  <!--
+  <button class="nav-toggle" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+-->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#apropos">À propos de nous</a></li>
+      <li><a href="#promotions">Promotions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 1. HERO -->
+  <section id="accueil" class="section hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Épicerie du monde — Bruxelles</p>
+        <h1>Retrouvez les saveurs de votre pays, ici à <em>Bruxelles</em>.</h1>
+        <p>Épices, produits frais, spécialités importées et incontournables du quotidien : Tatlim Market rassemble le meilleur des cuisines du monde entier, à deux pas de chez vous.</p>
+        <a class="btn btn-solid" href="https://www.instagram.com/tatlimmarket/?hl=fr" target="_blank" rel="noopener">Suivez-nous sur Instagram</a>
+      </div>
+      <div class="hero-visual arch-frame carousel" data-carousel data-interval="4500">
+        <img class="is-active" src="https://picsum.photos/seed/tatlim-facade-1/700/900" alt="Entrée du magasin Tatlim Market — magasin 1">
+        <img src="https://picsum.photos/seed/tatlim-facade-2/700/900" alt="Entrée du magasin Tatlim Market — magasin 2">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. À PROPOS -->
+  <section id="apropos" class="section about alt-bg">
+    <div class="about-grid">
+      <div class="about-visual arch-frame carousel" data-carousel data-interval="4000">
+        <img class="is-active" src="https://picsum.photos/seed/tatlim-rayon-1/700/900" alt="Rayon du magasin Tatlim Market 1">
+        <img src="https://picsum.photos/seed/tatlim-rayon-2/700/900" alt="Rayon du magasin Tatlim Market 2">
+        <img src="https://picsum.photos/seed/tatlim-rayon-3/700/900" alt="Rayon du magasin Tatlim Market 3">
+      </div>
+      <div class="about-text">
+        <p class="eyebrow">À propos de nous</p>
+        <h2>Une épicerie qui a le goût d'ailleurs.</h2>
+        <p>Chez Tatlim Market, nous croyons que la cuisine est le lien le plus direct avec son pays d'origine. C'est pourquoi nous proposons un large choix de produits ethniques : épices, conserves, farines, boissons, produits frais et surgelés venus des quatre coins du monde.</p>
+        <p>Que vous cherchiez un ingrédient précis pour une recette de famille ou que vous ayez envie de découvrir de nouvelles saveurs, notre équipe est là pour vous conseiller et vous faire redécouvrir le goût de chez vous.</p>
+        <ul class="origin-tags">
+          <li>Turquie</li>
+          <li>Maghreb</li>
+          <li>Moyen-Orient</li>
+          <li>Afrique</li>
+          <li>Asie</li>
+          <li>Europe de l'Est</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PROMOTIONS -->
+  <section id="promotions" class="section promo">
+    <div class="promo-grid">
+      <div class="promo-text">
+        <p class="eyebrow">Promotions</p>
+        <h2>Ne manquez aucune bonne affaire.</h2>
+        <p>Nos promotions changent régulièrement et sont annoncées en priorité sur nos réseaux sociaux. Suivez nos pages Facebook et Instagram pour être averti·e dès qu'une nouvelle offre est disponible en magasin.</p>
+        <div class="social-row">
+          <a class="btn btn-solid" href="https://www.instagram.com/tatlimmarket/?hl=fr" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn btn-outline" href="#" target="_blank" rel="noopener">Facebook <span style="opacity:.6; font-weight:400;">(lien à ajouter)</span></a>
+        </div>
+      </div>
+      <div class="promo-visual">
+        <div class="promo-badge"><b>-20%</b><span>Cette semaine</span></div>
+        <div class="arch-frame" style="width:100%; height:100%;">
+          <img src="https://picsum.photos/seed/tatlim-promo/700/900" alt="Produit en promotion chez Tatlim Market">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CONTACT -->
+  <section id="contact" class="section contact alt-bg">
+    <div class="contact-head">
+      <p class="eyebrow">Contact</p>
+      <h2>Venez nous rendre visite.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="store-card">
+        <div class="store-map">
+          <iframe src="https://www.google.com/maps?q=Bruxelles&output=embed" loading="lazy" allowfullscreen title="Carte magasin 1"></iframe>
+        </div>
+        <div class="store-info">
+          <h3>Magasin 1</h3>
+          <p class="placeholder">[Adresse à compléter], Bruxelles</p>
+          <p class="placeholder">Horaires : [à compléter]</p>
+        </div>
+      </div>
+      <div class="store-card">
+        <div class="store-map">
+          <iframe src="https://www.google.com/maps?q=Bruxelles&output=embed" loading="lazy" allowfullscreen title="Carte magasin 2"></iframe>
+        </div>
+        <div class="store-info">
+          <h3>Magasin 2</h3>
+          <p class="placeholder">[Adresse à compléter], Bruxelles</p>
+          <p class="placeholder">Horaires : [à compléter]</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-footer">
+      <div class="item">
+        <span class="eyebrow">E-mail</span>
+        <a href="mailto:contact@tatlimmarket.be">contact@tatlimmarket.be <span style="font-size:.6em; opacity:.5; font-style:normal;">(à vérifier)</span></a>
+      </div>
+      <div class="item">
+        <span class="eyebrow">Téléphone</span>
+        <span>+32 X XX XX XX XX <span style="font-size:.6em; opacity:.5; font-style:normal;">(à compléter)</span></span>
+      </div>
+      <div class="item">
+        <span class="eyebrow">Réseaux</span>
+        <a href="https://www.instagram.com/tatlimmarket/?hl=fr" target="_blank" rel="noopener">@tatlimmarket</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  © <span id="year"></span> Tatlim Market — Épicerie du monde à Bruxelles.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile nav toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    nav.classList.remove('open');
+  }));
+
+  // auto-playing crossfade carousels
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const imgs = carousel.querySelectorAll('img');
+    if (imgs.length < 2) return;
+    let i = 0;
+    const interval = parseInt(carousel.dataset.interval, 10) || 4000;
+    setInterval(() => {
+      imgs[i].classList.remove('is-active');
+      i = (i + 1) % imgs.length;
+      imgs[i].classList.add('is-active');
+    }, interval);
+  });
+</script>
+
+</body>
+</html>
