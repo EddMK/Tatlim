@@ -14,36 +14,60 @@ body {
 header {
   background-color: #EAF5DF;
 }
-
+/*
 .header_container{
     padding-left: 20px;
     padding-right: 20px;
     margin-left: 100px;
     margin-right: 100px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     height: 10vh;
 }
 
 .logo_part{
-    flex:1;
+    display: grid;
+    place-items: center;
+
+}
+
+.nav_part{
+    background-color: #EAF5DF;
+    
+}
+
+.header_actions{
+    text-align: center;
+    justify-self: center;
+}
+*/
+
+.header_container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 50px;
+}
+
+.logo_part {
+    justify-self: center;
     display: flex;
     justify-content: center;
 }
 
-.nav_part{
-    flex:2;
-    background-color: #EAF5DF;
-    text-align: center;
+.nav_part {
+    justify-self: center;
 }
 
-.language_part{
-    flex:1;
-    text-align: center;
-    
+.header_actions {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
-
 header a {
   color: #83c03f;
   text-align: center;
@@ -64,9 +88,6 @@ header a:hover {
   color: white;
 }
 */
-.header-right {
-  float: right;
-}
 
 .dropdown {
     position: relative;
@@ -133,6 +154,10 @@ header a:hover {
     height: auto;
 }
 
+.menu_button{
+    display: none;
+    background-color: #EAF5DF;
+}
 
 
 
@@ -162,24 +187,34 @@ header a:hover {
 .home_picture img{
     border-radius: 30px;
 }
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .header-right {
-    float: none;
-  }
-}
 */
+
+@media screen and (max-width: 800px) {
+    .header_container {
+        padding: 10px 20px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .header_actions {
+        display: flex;
+        align-items: center;
+        background-color: red;
+        place-items: end;
+    }
+
+    .nav_part {
+        display: none;
+    }
+
+    .menu_button {
+        display: block;
+    }
+}
 </style>
 <script>
     function switchToFrench(){
         document.getElementById("languageOfTheWebsite").textContent = "FR"
-        console.log(document.getElementById("flagLanguageWebsite").src)
         document.getElementById("flagLanguageWebsite").src = "flag-for-flag-france-svgrepo-com.svg"
     };
 
@@ -206,18 +241,23 @@ header a:hover {
                 <a href="#">Promotion</a>
                 <a href="#">Contact</a>
             </div>
-            <div class="language_part">
-                <div class="dropdown">
-                    <a  onclick="clickChangeLanguage()">
-                        <img src="flag-for-flag-france-svgrepo-com.svg" alt="Flag" width="20" id="flagLanguageWebsite">
-                        <span id="languageOfTheWebsite">FR</span>
-                    </a>
-                    <ul class="dropdown_menu">
-                        <li><a  onclick="switchToFrench()"><img src="flag-for-flag-france-svgrepo-com.svg" alt="Français" width="20"> FR</a></li>
-                        <li><a  onclick="switchToEnglish()"><img src="flag-for-flag-united-kingdom-svgrepo-com.svg" alt="Anglais" width="20"> EN</a></li>
-                        <li><a  onclick="switchToDutch()"><img src="flag-for-flag-netherlands-svgrepo-com.svg" alt="Néerlandais" width="20"> NL</a></li>
-                    </ul>
+            <div class="header_actions">
+                <div class="language_part">
+                    <div class="dropdown">
+                        <a  onclick="clickChangeLanguage()">
+                            <img src="flag-for-flag-france-svgrepo-com.svg" alt="Flag" width="20" id="flagLanguageWebsite">
+                            <span id="languageOfTheWebsite">FR</span>
+                        </a>
+                        <ul class="dropdown_menu">
+                            <li><a  onclick="switchToFrench()"><img src="flag-for-flag-france-svgrepo-com.svg" alt="Français" width="20"> FR</a></li>
+                            <li><a  onclick="switchToEnglish()"><img src="flag-for-flag-united-kingdom-svgrepo-com.svg" alt="Anglais" width="20"> EN</a></li>
+                            <li><a  onclick="switchToDutch()"><img src="flag-for-flag-netherlands-svgrepo-com.svg" alt="Néerlandais" width="20"> NL</a></li>
+                        </ul>
+                    </div>
                 </div>
+                <button class="menu_button" onclick="toggleMenu()" aria-label="Ouvrir le menu">
+                    ☰
+                </button>
             </div>
         </div>
     </header>
