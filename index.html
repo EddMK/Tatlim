@@ -1,526 +1,327 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marché des Saveurs — Épicerie du monde à Bruxelles</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
- 
-  /* ============ TOKENS ============ */
-  :root{
-    --cream:#F3E9D2;
-    --cream-alt:#FBF6EA;
-    --plum:#3B1F2B;
-    --plum-soft:#4E2A3C;
-    --saffron:#E4A11B;
-    --brick:#B23A2E;
-    --teal:#2E5339;
-    --ink:#241417;
-    --ink-soft:#5B4A4F;
-    --line: rgba(36,20,23,0.12);
- 
-    --display: "Fraunces", serif;
-    --body: "Work Sans", sans-serif;
-    --mono: "Space Mono", monospace;
- 
-    --radius: 4px;
-    --gap-xl: clamp(2.5rem, 6vw, 6rem);
-    --gap-lg: clamp(1.5rem, 4vw, 3rem);
-    --transition: 0.5s cubic-bezier(.4,0,.2,1);
-  }
- 
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-  }
- 
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-  body{
-    margin:0;
-    background: var(--cream);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  img{ max-width:100%; display:block; }
-  a{ color: inherit; }
-  h1,h2,h3{ font-family: var(--display); font-weight: 600; margin:0 0 0.5em; letter-spacing: -0.01em; }
-  p{ margin:0 0 1em; color: var(--ink-soft); }
- 
-  a:focus-visible, button:focus-visible{
-    outline: 3px solid var(--brick);
-    outline-offset: 3px;
-  }
- 
-  .eyebrow{
-    display:inline-block;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--brick);
-    margin-bottom: 1rem;
-  }
- 
-  .wrap{
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 clamp(1.25rem, 4vw, 3rem);
-  }
- 
-  /* ============ AWNING DIVIDER (signature element) ============ */
-  .awning{
-    height: 14px;
-    width: 100%;
-    background: repeating-linear-gradient(
-      115deg,
-      var(--saffron) 0 26px,
-      var(--brick) 26px 52px,
-      var(--teal) 52px 78px,
-      var(--cream-alt) 78px 104px
-    );
-  }
- 
-  /* ============ HEADER ============ */
-  .site-header{
-    position: sticky;
-    top:0;
-    z-index: 50;
-    /*background: var(--plum);*/
-    background: #0a0f0a;
-    color: var(--cream-alt);
-  }
-  .site-header .wrap{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
-  }
-  .logo{
-    display:flex;
-    align-items:center;
-    gap: 0.6rem;
-    text-decoration:none;
-    color: var(--cream-alt);
-  }
-  .logo .stamp{ width: 40px; height: 40px; flex-shrink:0; }
-  .logo-text{ font-family: var(--display); line-height:1.05; }
-  .logo-text strong{ display:block; font-size: 1.05rem; letter-spacing: 0.02em; }
-  .logo-text span{ display:block; font-size: 0.72rem; font-family: var(--mono); letter-spacing: 0.08em; color: var(--saffron); text-transform: uppercase; }
- 
-  .main-nav{ display:flex; gap: clamp(1rem, 3vw, 2.2rem); flex-wrap: wrap; }
-  .main-nav a{
-    text-decoration:none;
-    font-family: var(--mono);
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--cream-alt);
-    position: relative;
-    padding-bottom: 4px;
-  }
-  .main-nav a::after{
-    content:"";
-    position:absolute; left:0; bottom:0;
-    width:0; height:2px;
-    background: var(--saffron);
-    transition: width 0.3s ease;
-  }
-  .main-nav a:hover::after, .main-nav a:focus-visible::after{ width:100%; }
- 
-  /* ============ SPLIT SECTIONS ============ */
-  .section-split{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  /*background-color: #EAF5DF;*/
+}
+
+header {
+  /*background-color: #EAF5DF;*/
+}
+
+.header_container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    gap: var(--gap-xl);
-    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 3rem);
-    max-width: 1240px;
-    margin: 0 auto;
-  }
-  .section-split.reverse .text-col{ order:2; }
-  .section-split.reverse .media-col{ order:1; }
- 
-  .text-col h1{ font-size: clamp(2.1rem, 4vw, 3.2rem); }
-  .text-col h2{ font-size: clamp(1.7rem, 3vw, 2.4rem); }
-  .text-col p{ font-size: 1.05rem; max-width: 46ch; }
- 
-  .cta{
-    display:inline-flex;
-    align-items:center;
-    gap:0.5rem;
-    margin-top: 0.75rem;
-    padding: 0.85rem 1.6rem;
-    background: var(--brick);
-    color: var(--cream-alt);
-    text-decoration:none;
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border-radius: var(--radius);
-    transition: transform 0.25s ease, background 0.25s ease;
-  }
-  .cta:hover{ background: var(--plum); transform: translateY(-2px); }
- 
-  /* ============ CAROUSEL ============ */
-  .media-col{ position:relative; }
-  .carousel{
-    position:relative;
-    width:100%;
-    aspect-ratio: 4/3;
-    border-radius: var(--radius);
-    overflow:hidden;
-    box-shadow: 0 18px 40px -18px rgba(36,20,23,0.45);
-    background: var(--plum);
-  }
-  .carousel img{
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit: cover;
-    opacity:0;
-    transition: opacity 1.1s ease;
-  }
-  .carousel img.active{ opacity:1; }
-  .carousel .caption{
-    position:absolute; left:0; right:0; bottom:0;
-    padding: 0.9rem 1.1rem;
-    background: linear-gradient(0deg, rgba(36,20,23,0.75), transparent);
-    color: var(--cream-alt);
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    z-index: 2;
-  }
-  .carousel-dots{
-    position:absolute; right: 1rem; top: 1rem; z-index:3;
-    display:flex; gap: 6px;
-  }
-  .carousel-dots span{
-    width: 7px; height:7px; border-radius: 50%;
-    background: rgba(251,246,234,0.45);
-  }
-  .carousel-dots span.active{ background: var(--saffron); }
- 
-  /* stamp seal decoration near hero */
-  .seal-float{
-    position:absolute;
-    width: 96px; height: 96px;
-    left: -34px; bottom: -30px;
-    z-index: 4;
-    filter: drop-shadow(0 8px 14px rgba(36,20,23,0.35));
-  }
- 
-  /* ============ ABOUT ============ */
-  #apropos{ background: var(--cream-alt); }
-  .origin-tags{ list-style:none; padding:0; margin: 1.5rem 0 0; display:flex; flex-wrap:wrap; gap: 0.55rem; }
-  .origin-tags li{
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--teal);
-  }
- 
-  /* ============ PROMOTIONS ============ */
-  #promotions{ background: var(--plum); color: var(--cream-alt); }
-  #promotions .eyebrow{ color: var(--saffron); }
-  #promotions p{ color: rgba(251,246,234,0.8); }
-  #promotions h2{ color: var(--cream-alt); }
-  .social-links{ display:flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
-  .social-btn{
-    display:inline-flex; align-items:center; gap:0.5rem;
-    text-decoration:none;
-    padding: 0.7rem 1.2rem;
-    border: 1px solid rgba(251,246,234,0.4);
-    border-radius: var(--radius);
-    font-family: var(--mono);
-    font-size: 0.82rem;
-    color: var(--cream-alt);
-    transition: background 0.25s ease, border-color 0.25s ease;
-  }
-  .social-btn:hover{ background: var(--saffron); border-color: var(--saffron); color: var(--plum); }
-  .social-btn svg{ width:16px; height:16px; }
- 
-  .promo-image{ position:relative; }
-  .promo-image img{ border-radius: var(--radius); box-shadow: 0 18px 40px -18px rgba(0,0,0,0.6); }
-  .promo-badge{
-    position:absolute; top: -14px; right: -14px;
-    background: var(--brick);
-    color: var(--cream-alt);
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.6rem 0.9rem;
-    border-radius: 50%;
-    width: 72px; height:72px;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center;
-    transform: rotate(8deg);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-  }
- 
-  /* ============ CONTACT ============ */
-  #contact{ padding: clamp(3rem, 8vw, 6rem) 0; }
-  #contact .wrap > h2{
-    font-size: clamp(1.7rem, 3vw, 2.4rem);
-    max-width: 900px;
-  }
-  #contact > .wrap > p.lead{ max-width: 60ch; font-size: 1.05rem; margin-bottom: 2.5rem; }
- 
-  .contact-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gap-lg);
-    margin-bottom: var(--gap-lg);
-  }
-  .store-card{
-    background: var(--cream-alt);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  .store-card .map-frame{ width:100%; aspect-ratio: 16/10; border:0; filter: sepia(12%) saturate(85%); }
-  .store-card .store-body{ padding: 1.5rem; }
-  .store-card h3{ font-size: 1.25rem; margin-bottom: 0.3rem; }
-  .store-card .addr{ font-family: var(--mono); font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 1rem; }
-  .hours-table{ width:100%; border-collapse: collapse; font-family: var(--mono); font-size: 0.82rem; }
-  .hours-table td{ padding: 0.3rem 0; border-bottom: 1px dashed var(--line); }
-  .hours-table td:first-child{ color: var(--teal); text-transform: uppercase; letter-spacing: 0.04em; }
-  .hours-table td:last-child{ text-align: right; color: var(--ink); }
-  .hours-table tr:last-child td{ border-bottom:0; }
- 
-  .contact-details{
-    display:flex;
-    flex-wrap:wrap;
-    gap: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--line);
-  }
-  .contact-details .detail{ display:flex; align-items:center; gap: 0.7rem; }
-  .contact-details svg{ width:22px; height:22px; color: var(--brick); flex-shrink:0; }
-  .contact-details a{ text-decoration:none; font-weight:500; }
-  .contact-details a:hover{ color: var(--brick); }
-  .contact-details .label{ display:block; font-family: var(--mono); font-size: 0.7rem; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); }
- 
-  /* ============ FOOTER ============ */
-  footer{
-    background: var(--plum);
-    color: rgba(251,246,234,0.6);
-    text-align:center;
-    padding: 1.75rem 1rem;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    letter-spacing: 0.03em;
-  }
- 
-  /* ============ RESPONSIVE ============ */
-  @media (max-width: 860px){
-    .section-split{ grid-template-columns: 1fr; }
-    .section-split.reverse .text-col{ order:1; }
-    .section-split.reverse .media-col{ order:2; }
-    .contact-grid{ grid-template-columns: 1fr; }
-    .seal-float{ display:none; }
-    .main-nav{ gap: 1rem; }
-  }
-  @media (max-width: 560px){
-    .site-header .wrap{ flex-direction:column; align-items:flex-start; gap: 0.75rem; }
-  }
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 50px;
+}
+
+.logo_part {
+    display: flex;
+    justify-self: center;
+    /*justify-content: center;*/
+}
+
+.logo_part a img{
+        width: 100px;    
+}
+
+.nav_part {
+    justify-self: center;
+}
+
+.header_actions {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+header a {
+  color: #83c03f;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 60px;
+  border-radius: 4px;
+  height: 100px;
+}
+
+header a:hover {
+  color: #476B49;
+}
+/*
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+*/
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_menu {
+    display: none; /* caché par défaut */
+    position: absolute;
+    top: 100%; /* juste en dessous du <a> */
+    left: 0;
+    background-color: #fff;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 100px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.dropdown_menu li {
+    text-align: left;
+}
+
+.dropdown_menu li a {
+    display: block;
+    padding: 8px 12px;
+    color: #83c03f;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: normal; /* évite le line-height: 60px hérité de "header a" */
+    height: auto; /* pareil, pour ignorer le height: 100px hérité */
+}
+
+.dropdown_menu li a:hover {
+    background-color: #EAF5DF;
+}
+
+
+.dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown a img {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown_menu li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown_menu li a img {
+    display: block;
+    width: 20px;
+    height: auto;
+}
+
+
+.container {
+  display: none;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 25px;
+  height: 3px;
+  background-color: #83c03f;
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  transform: translate(0 , 8px) rotate(-45deg);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  transform: translate(0, -8px) rotate(45deg);
+}
+
+.menu_button{
+    display: none;
+    /*background-color: #EAF5DF;*/
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .header_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 10vh;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .header_actions {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu_button {
+        display: inline-block;
+    }
+
+    .logo_part {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .logo_part a {
+        display: flex;
+        align-items: center;    /* Centers vertically */
+        justify-content: center;
+    }
+
+    .logo_part a img{
+        width: 50px;
+    }
+
+    .nav_part {
+        display: none;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 100%;
+        background-color: #f8f9fa;
+    }
+
+    .nav_part.active {
+        display: flex;
+    }
+
+    .dropdown .dropdown_menu {
+        display: none;
+    }
+
+    .dropdown.open .dropdown_menu {
+        display: block;
+    }
+
+}
 </style>
+<script>
+    function switchToFrench(){
+        document.getElementById("languageOfTheWebsite").textContent = "FR"
+        document.getElementById("flagLanguageWebsite").src = "flag-for-flag-france-svgrepo-com.svg"
+        closeLanguageMenu();
+    };
+
+    function switchToEnglish(){
+        document.getElementById("languageOfTheWebsite").textContent = "EN"
+        document.getElementById("flagLanguageWebsite").src = "flag-for-flag-united-kingdom-svgrepo-com.svg"
+        closeLanguageMenu();
+    };
+
+    function switchToDutch(){
+        document.getElementById("languageOfTheWebsite").textContent = "NL"
+        document.getElementById("flagLanguageWebsite").src = "flag-for-flag-netherlands-svgrepo-com.svg"
+        closeLanguageMenu();
+    };
+
+    function toggleMenu(x) {
+        x.classList.toggle("change");
+        var navPart = document.querySelector('.nav_part');
+        if (navPart.style.display === "flex") {
+            navPart.style.display = "none";
+        } else {
+            navPart.style.display = "flex";
+        }
+    }
+
+    function toggleLanguageMenu() {
+        var dropdownMenu = document.querySelector('.dropdown_menu');
+        if (dropdownMenu.style.display === "block") {
+            dropdownMenu.style.display = "none";
+        } else {
+            dropdownMenu.style.display = "block";
+        }
+    }
+
+    function closeLanguageMenu() {
+        var dropdownMenu = document.querySelector('.dropdown_menu');
+        if (dropdownMenu.style.display === "block") {
+            dropdownMenu.style.display = "none";
+        } else {
+            dropdownMenu.style.display = "block";
+        }
+    }
+
+    document.addEventListener('click', function(event) {
+        var dropdown = document.querySelector('.dropdown');
+        if (!dropdown.contains(event.target)) {
+            document.querySelector('.dropdown_menu').style.display = "none";
+        }
+    });
+</script>
 </head>
 <body>
- 
-<header class="site-header">
-  <div class="wrap">
-    <a href="#hero" class="logo" aria-label="Marché des Saveurs — accueil">
-        <!--
-      <svg class="stamp" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="50" cy="50" r="46" stroke="#E4A11B" stroke-width="3" stroke-dasharray="3 5"/>
-        <circle cx="50" cy="50" r="34" stroke="#FBF6EA" stroke-width="2"/>
-        <path d="M50 24 L58 42 L78 44 L63 58 L67 78 L50 67 L33 78 L37 58 L22 44 L42 42 Z" fill="#B23A2E"/>
-      </svg>
-      <span class="logo-text">
-        <strong>Marché des Saveurs</strong>
-        <span>Épicerie du monde</span>
-      </span>
-    -->
-      <img src="logo.png" alt="logo" width="">
-    </a>
-    <nav class="main-nav" aria-label="Navigation principale">
-      <a href="#apropos">À propos de nous</a>
-      <a href="#promotions">Promotions</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
- 
-<!-- ============ 1. HERO ============ -->
-<section id="hero" class="section-split">
-  <div class="text-col">
-    <span class="eyebrow">Bruxelles — Matonge &amp; Cureghem</span>
-    <h1>Retrouvez les saveurs de votre pays, ici à Bruxelles.</h1>
-    <p>Épices, produits frais, conserves et spécialités venues des quatre coins du monde : deux magasins bruxellois pensés comme un vrai chez-soi pour toutes les cuisines.</p>
-    <a class="cta" href="#apropos">Découvrir nos magasins</a>
-  </div>
-  <div class="media-col">
-    <div class="carousel" data-interval="4500" aria-label="Photos des entrées de nos deux magasins">
-      <img class="active" src="https://picsum.photos/seed/marche-facade-matonge/900/700" alt="Entrée du magasin Marché des Saveurs à Matonge">
-      <img src="https://picsum.photos/seed/marche-facade-cureghem/900/700" alt="Entrée du magasin Marché des Saveurs à Cureghem">
-      <div class="carousel-dots"><span class="active"></span><span></span></div>
-      <div class="caption">Nos deux façades — Matonge &amp; Cureghem</div>
-    </div>
-    <svg class="seal-float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="50" cy="50" r="46" fill="#E4A11B"/>
-      <circle cx="50" cy="50" r="46" stroke="#3B1F2B" stroke-width="2" stroke-dasharray="1 5"/>
-      <text x="50" y="46" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" fill="#3B1F2B" letter-spacing="1">PRODUITS</text>
-      <text x="50" y="60" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" fill="#3B1F2B" letter-spacing="1">AUTHENTIQUES</text>
-    </svg>
-  </div>
-</section>
- 
-<div class="awning" role="presentation"></div>
- 
-<!-- ============ 2. À PROPOS ============ -->
-<section id="apropos" class="section-split reverse">
-  <div class="media-col">
-    <div class="carousel" data-interval="4000" aria-label="Photos des rayons du magasin">
-      <img class="active" src="https://picsum.photos/seed/marche-rayon-epices/900/700" alt="Rayon épices du magasin">
-      <img src="https://picsum.photos/seed/marche-rayon-fruits/900/700" alt="Rayon fruits et légumes du magasin">
-      <img src="https://picsum.photos/seed/marche-rayon-epicerie/900/700" alt="Rayon épicerie du magasin">
-      <div class="carousel-dots"><span class="active"></span><span></span><span></span></div>
-    </div>
-  </div>
-  <div class="text-col">
-    <span class="eyebrow">À propos de nous</span>
-    <h2>Un supermarché aux couleurs du monde</h2>
-    <p>Le Marché des Saveurs, c'est une épicerie qui rassemble les produits que l'on cherche parfois en vain ailleurs : épices moulues sur place, céréales et légumineuses en vrac, conserves, boissons, produits frais et surgelés venus d'Afrique, du Maghreb, du Moyen-Orient, d'Asie et des Caraïbes.</p>
-    <p>Dans nos deux magasins, chaque rayon est pensé pour qu'on y retrouve les marques et les goûts de chez soi, à deux pas de chez soi, à Bruxelles.</p>
-    <ul class="origin-tags">
-      <li>Afrique de l'Ouest</li>
-      <li>Maghreb</li>
-      <li>Moyen-Orient</li>
-      <li>Asie</li>
-      <li>Caraïbes</li>
-    </ul>
-  </div>
-</section>
- 
-<div class="awning" role="presentation"></div>
- 
-<!-- ============ 3. PROMOTIONS ============ -->
-<section id="promotions" class="section-split">
-  <div class="text-col">
-    <span class="eyebrow">Promotions</span>
-    <h2>Les bons plans s'annoncent d'abord en ligne</h2>
-    <p>Nos promotions changent chaque semaine et partent vite. Pour ne rien rater — nouvelles arrivées, prix cassés et coups de cœur du rayon — le plus sûr est de nous suivre sur Facebook et Instagram : c'est là que tout est annoncé en premier.</p>
-    <div class="social-links">
-      <a class="social-btn" href="https://www.facebook.com/marchedessaveurs" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg>
-        Facebook
-      </a>
-      <a class="social-btn" href="https://www.instagram.com/marchedessaveurs" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c2.67 0 2.99.01 4.04.06 2.71.12 3.97 1.4 4.1 4.1.05 1.05.06 1.36.06 4.03 0 2.68-.01 2.99-.06 4.04-.12 2.69-1.38 3.97-4.1 4.1-1.05.05-1.36.06-4.04.06-2.67 0-2.99-.01-4.03-.06-2.73-.12-3.98-1.41-4.1-4.1-.05-1.05-.06-1.36-.06-4.04 0-2.67.02-2.98.06-4.03.12-2.7 1.38-3.98 4.1-4.1 1.05-.05 1.36-.06 4.03-.06ZM12 0C9.28 0 8.94.01 7.87.06 4.05.24.24 4.04.06 7.87.01 8.94 0 9.28 0 12c0 2.72.01 3.06.06 4.13.18 3.82 3.98 7.63 7.81 7.81C8.94 23.99 9.28 24 12 24c2.72 0 3.06-.01 4.13-.06 3.82-.18 7.63-3.98 7.81-7.81.05-1.07.06-1.41.06-4.13 0-2.72-.01-3.06-.06-4.13C23.76 4.05 19.96.24 16.13.06 15.06.01 14.72 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84ZM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4Zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44Z"/></svg>
-        Instagram
-      </a>
-    </div>
-  </div>
-  <div class="media-col promo-image">
-    <img src="https://picsum.photos/seed/marche-promo-produit/800/800" alt="Produit en promotion cette semaine">
-    <span class="promo-badge">Promo<br>de la semaine</span>
-  </div>
-</section>
- 
-<div class="awning" role="presentation"></div>
- 
-<!-- ============ 4. CONTACT ============ -->
-<section id="contact">
-  <div class="wrap">
-    <span class="eyebrow">Contact</span>
-    <h2>Nous rendre visite</h2>
-    <p class="lead">Deux magasins à Bruxelles, ouverts toute la semaine. Passez nous voir, ou contactez-nous directement.</p>
- 
-    <div class="contact-grid">
-      <div class="store-card">
-        <iframe class="map-frame" loading="lazy" title="Carte du magasin Matonge"
-          src="https://www.google.com/maps?q=Chauss%C3%A9e%20de%20Wavre%20208%2C%201050%20Ixelles%2C%20Bruxelles&output=embed"></iframe>
-        <div class="store-body">
-          <h3>Matonge</h3>
-          <p class="addr">Chaussée de Wavre 208, 1050 Ixelles</p>
-          <table class="hours-table">
-            <tr><td>Lun – Ven</td><td>8h30 – 19h30</td></tr>
-            <tr><td>Samedi</td><td>8h30 – 20h00</td></tr>
-            <tr><td>Dimanche</td><td>9h00 – 13h00</td></tr>
-          </table>
+    <header>
+        <div class="header_container">
+            <div class="logo_part">
+                <a href="#" class="logo"><img src="Logo sans titre transparent.png" alt="logo"></a>
+            </div>
+            <div class="nav_part">
+                <a class="active" href="#">Accueil</a>
+                <a href="#">Produits</a>
+                <a href="#">Promotion</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="header_actions">
+                <div class="language_part">
+                    <div class="dropdown">
+                        <a onclick="toggleLanguageMenu()">
+                            <img src="flag-for-flag-france-svgrepo-com.svg" alt="Flag" width="20" id="flagLanguageWebsite">
+                            <span id="languageOfTheWebsite">FR</span>
+                        </a>
+                        <ul class="dropdown_menu">
+                            <li><a  onclick="switchToFrench()"><img src="flag-for-flag-france-svgrepo-com.svg" alt="Français" width="20"> FR</a></li>
+                            <li><a  onclick="switchToEnglish()"><img src="flag-for-flag-united-kingdom-svgrepo-com.svg" alt="Anglais" width="20"> EN</a></li>
+                            <li><a  onclick="switchToDutch()"><img src="flag-for-flag-netherlands-svgrepo-com.svg" alt="Néerlandais" width="20"> NL</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu_button" onclick="toggleMenu(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </div>
         </div>
-      </div>
- 
-      <div class="store-card">
-        <iframe class="map-frame" loading="lazy" title="Carte du magasin Cureghem"
-          src="https://www.google.com/maps?q=Rue%20Wayez%2090%2C%201070%20Anderlecht%2C%20Bruxelles&output=embed"></iframe>
-        <div class="store-body">
-          <h3>Cureghem</h3>
-          <p class="addr">Rue Wayez 90, 1070 Anderlecht</p>
-          <table class="hours-table">
-            <tr><td>Lun – Ven</td><td>8h30 – 19h30</td></tr>
-            <tr><td>Samedi</td><td>8h30 – 20h00</td></tr>
-            <tr><td>Dimanche</td><td>9h00 – 13h00</td></tr>
-          </table>
-        </div>
-      </div>
+    </header>
+<!--
+<div class="home">
+    <div class ="home_explaining">
+        <p>
+            Tatli'm<br>
+            Retrouvez les saveurs de votre pays,<br>
+            ici à Bruxelles
+        </p>
     </div>
- 
-    <div class="contact-details">
-      <div class="detail">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
-        <span><span class="label">Email</span><a href="mailto:contact@marchedessaveurs.be">contact@marchedessaveurs.be</a></span>
-      </div>
-      <div class="detail">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.98.36 1.94.68 2.86a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.22-1.25a2 2 0 0 1 2.11-.45c.92.32 1.88.55 2.86.68A2 2 0 0 1 22 16.92Z"/></svg>
-        <span><span class="label">Téléphone</span><a href="tel:+3221234567">+32 2 123 45 67</a></span>
-      </div>
+    <div class ="home_picture">
+        <img src="parking tatlim.jpg" alt="parking">
     </div>
-  </div>
-</section>
- 
-<footer>
-  © 2026 Marché des Saveurs — Matonge &amp; Cureghem, Bruxelles
-</footer>
- 
-<script>
-  // Auto-sliding carousels
-  document.querySelectorAll('.carousel').forEach(function(carousel){
-    var images = carousel.querySelectorAll('img');
-    var dots = carousel.querySelectorAll('.carousel-dots span');
-    if(images.length < 2) return;
-    var current = 0;
-    var interval = parseInt(carousel.dataset.interval, 10) || 4000;
- 
-    function goTo(index){
-      images[current].classList.remove('active');
-      if(dots.length) dots[current].classList.remove('active');
-      current = index % images.length;
-      images[current].classList.add('active');
-      if(dots.length) dots[current].classList.add('active');
-    }
- 
-    var timer = setInterval(function(){ goTo(current + 1); }, interval);
- 
-    // pause on hover/focus for accessibility & control
-    carousel.addEventListener('mouseenter', function(){ clearInterval(timer); });
-    carousel.addEventListener('mouseleave', function(){ timer = setInterval(function(){ goTo(current + 1); }, interval); });
-  });
-</script>
- 
+</div>
+-->
 </body>
 </html>
- 
+
