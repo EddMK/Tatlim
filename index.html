@@ -5,6 +5,11 @@
 <style>
 * {box-sizing: border-box;}
 
+/*
+#83c03f
+#EAF5DF
+*/
+
 body { 
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -45,7 +50,7 @@ header {
     gap: 15px;
 }
 header a {
-  color: #83c03f;
+  color: black;
   text-align: center;
   padding: 12px;
   text-decoration: none;
@@ -58,12 +63,7 @@ header a {
 header a:hover {
   color: #476B49;
 }
-/*
-.header a.active {
-  background-color: dodgerblue;
-  color: white;
-}
-*/
+
 
 .dropdown {
     position: relative;
@@ -107,6 +107,12 @@ header a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.dropdown > a {
+    height: auto;
+    line-height: normal;
+    padding: 12px;
 }
 
 .dropdown a img {
@@ -203,6 +209,14 @@ header a:hover {
         position: absolute;
         top: 100%;
         background-color: #f8f9fa;
+    }
+
+    .nav_part a {
+        height: auto;
+        line-height: normal;
+        width: 100%;
+        padding: 15px 20px;
+        box-sizing: border-box;
     }
 
     .nav_part.active {
