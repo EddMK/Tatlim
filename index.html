@@ -176,19 +176,78 @@ header a:hover {
     display: flex;
     gap : 50px;
 }
-
+/*
 .home_picture{
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    overflow: hidden;
 }
 
-.home_picture img{
+.slides{
+    display: flex;
+    width : 200%;
+    animation: slide 10s infinite;
+}
+
+.slides img{
     width: 100%;
-    max-width: 700px;
+    max-width: 900px;
     height: auto;
     border-radius: 20px;
+}
+*/
+
+.home_picture{
+    flex: 1;
+    width: 100%;
+    height: 500px; /* hauteur fixe */
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.slides{
+    display: flex;
+    width: 200%;
+    height: 100%;
+    animation: slide 10s infinite;
+}
+
+.slides img{
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+/*
+@keyframes slide {
+    0% { margin-left: 0; }
+    50% { margin-left: -100%; }
+    100% { margin-left: 0%; }
+}*/
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+
+    45% {
+        transform: translateX(0);
+    }
+
+    55% {
+        transform: translateX(-50%);
+    }
+
+    95% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 .home_explaining{
@@ -247,6 +306,7 @@ header a:hover {
     margin: 0;
     font-size: 20px;
 }   
+
 
 
 
@@ -424,7 +484,10 @@ header a:hover {
                 </p>
             </div>
             <div class ="home_picture">
-                <img src="parking tatlim.jpg" alt="parking">
+                <div class="slides">
+                    <img src="parking tatlim.jpg" alt="slide1">
+                    <img src="un-magasin-aldi-a-lokeren.jpg" alt="slide2">
+                </div>  
             </div>
         </div>
     </div>
