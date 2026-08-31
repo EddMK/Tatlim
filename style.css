@@ -310,6 +310,7 @@ header a:hover {
     padding: 100px 50px;
     display: flex;
     gap: 50px;
+
 }
 
 .promotions_container p {
@@ -319,9 +320,17 @@ header a:hover {
 .promotion_picture{
     flex: 1;
     width: 100%;
-    height: 500px;
+    height: 400px;
     overflow: hidden;
-    border-radius: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.promotion_picture svg{
+    width: 300px;
+    height:300px;
 }
 
 .promotion_text{
