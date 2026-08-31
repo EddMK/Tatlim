@@ -1,5 +1,27 @@
 * {box-sizing: border-box;}
 
+:root{
+    --cream:#F3E9D2;
+    --cream-alt:#FBF6EA;
+    --plum:#3B1F2B;
+    --plum-soft:#4E2A3C;
+    --saffron:#E4A11B;
+    --brick:#B23A2E;
+    --teal:#2E5339;
+    --ink:#241417;
+    --ink-soft:#5B4A4F;
+    --line: rgba(36,20,23,0.12);
+ 
+    --display: "Fraunces", serif;
+    --body: "Work Sans", sans-serif;
+    --mono: "Space Mono", monospace;
+ 
+    --radius: 4px;
+    --gap-xl: clamp(2.5rem, 6vw, 6rem);
+    --gap-lg: clamp(1.5rem, 4vw, 3rem);
+    --transition: 0.5s cubic-bezier(.4,0,.2,1);
+  }
+
 /*
 #83c03f
 #EAF5DF
@@ -178,29 +200,6 @@ header a:hover {
     display: flex;
     gap : 50px;
 }
-/*
-.home_picture{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
-}
-
-.slides{
-    display: flex;
-    width : 200%;
-    animation: slide 10s infinite;
-}
-
-.slides img{
-    width: 100%;
-    max-width: 900px;
-    height: auto;
-    border-radius: 20px;
-}
-*/
 
 .home_picture{
     flex: 1;
@@ -223,12 +222,6 @@ header a:hover {
     object-fit: cover;
     border-radius: 20px;
 }
-/*
-@keyframes slide {
-    0% { margin-left: 0; }
-    50% { margin-left: -100%; }
-    100% { margin-left: 0%; }
-}*/
 
 @keyframes slide {
     0% {
@@ -381,12 +374,70 @@ a.button:hover{
     background:linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
 }
 
+.contact {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.contact_container {
+    padding: 50px;
+    display: flex;
+    gap: 50px;
+}
+
+
+
+/* ============ CONTACT ============ */
+  #contact{ padding: clamp(3rem, 8vw, 6rem) 0; }
+  #contact .wrap > h2{
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    max-width: 900px;
+  }
+  #contact > .wrap > p.lead{ max-width: 60ch; font-size: 1.05rem; margin-bottom: 2.5rem; }
+ 
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-lg);
+    margin-bottom: var(--gap-lg);
+  }
+  .store-card{
+    background: var(--cream-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    flex: 1;
+  }
+  .store-card .map-frame{ width:100%; aspect-ratio: 16/10; border:0; filter: sepia(12%) saturate(85%); }
+  .store-card .store-body{ padding: 1.5rem; }
+  .store-card h3{ font-size: 1.25rem; margin-bottom: 0.3rem; }
+  .store-card .addr{ font-family: var(--mono); font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 1rem; }
+  .hours-table{ width:100%; border-collapse: collapse; font-family: var(--mono); font-size: 0.82rem; }
+  .hours-table td{ padding: 0.3rem 0; border-bottom: 1px dashed var(--line); }
+  .hours-table td:first-child{ color: var(--teal); text-transform: uppercase; letter-spacing: 0.04em; }
+  .hours-table td:last-child{ text-align: right; color: var(--ink); }
+  .hours-table tr:last-child td{ border-bottom:0; }
+ 
+  .contact-details{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .contact-details .detail{ display:flex; align-items:center; gap: 0.7rem; }
+  .contact-details svg{ width:22px; height:22px; color: var(--brick); flex-shrink:0; }
+  .contact-details a{ text-decoration:none; font-weight:500; }
+  .contact-details a:hover{ color: var(--brick); }
+  .contact-details .label{ display:block; font-family: var(--mono); font-size: 0.7rem; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); }
+
 
 @media screen and (max-width: 800px) {
     header,
     .home, 
     .statistics,
-    .promotions {
+    .promotions,
+    .contact {
         margin-left: 0;
         margin-right: 0;
     }
@@ -523,5 +574,11 @@ a.button:hover{
 
     a.button {
         font-size: 15px; 
+    }
+
+    .contact_container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 50px 20px;
     }
 }
