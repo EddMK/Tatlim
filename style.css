@@ -366,16 +366,18 @@ header a:hover {
     display: flex;
     width: 100%;
     gap: 50px;
-    
 }
 
 a.button {
     display: flex;
     padding: 1px 6px;
     border-radius: 50px;
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 18px;
     text-decoration: none;
+    color : #5E8A2D;
+    background-color: #EAF5DF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     flex : 1;
     text-align: center;
     align-items: center;
@@ -389,18 +391,22 @@ a.button:hover{
     transform: translateY(-5px);
 }
 
+a.button svg {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
 /* #1877F2  */
-
-
+/*
 .social_media_buttons :first-child {
     color: #42601F;
 }
 
 .social_media_buttons :nth-child(2) svg {
-    /*background-color: #F5F0E7;*/
     height : 80px;
 }
-
+*/
 
 /* ============ CONTACT ============ */
 
