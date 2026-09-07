@@ -30,13 +30,14 @@
 body { 
   margin: 0;
   font-family: "Google Sans Flex", sans-serif;
-  background-color: #F5F0E7;
+  /*background-color: #F5F0E7;*/
 }
 
 header {
   /*background-color: #EAF5DF;*/
     margin-left: 150px;
     margin-right: 150px;
+    /*background-color: #F5F0E7;*/
 }
 
 .header_container {
@@ -98,6 +99,13 @@ header a:hover {
     display: inline-block;
 }
 
+.dropdown a span{
+    color : black;
+    font-weight: normal;
+}
+
+
+
 .dropdown_menu {
     display: none; /* caché par défaut */
     position: absolute;
@@ -119,7 +127,7 @@ header a:hover {
 .dropdown_menu li a {
     display: block;
     padding: 8px 12px;
-    color: #83c03f;
+    /*color: #83c03f;*/
     text-decoration: none;
     font-size: 16px;
     line-height: normal; /* évite le line-height: 60px hérité de "header a" */
@@ -141,6 +149,7 @@ header a:hover {
     height: auto;
     line-height: normal;
     padding: 12px;
+    cursor: pointer;
 }
 
 .dropdown a img {
@@ -270,9 +279,11 @@ header a:hover {
 }
 
 .statistics_container {
-    padding: 50px;
+    padding: 20px 50px;
     display: flex;
     gap: 50px;
+    /*background-color: #D3E9BA;*/
+    border-radius: 50px;
 }
 
 .statistics_item {
@@ -293,11 +304,13 @@ header a:hover {
 .statistics_item h2 {
     margin: 0;
     font-size: 32px;
+    color: #557C28;
 }
 
 .statistics_item p {
     margin: 0;
-    font-size: 20px;
+    font-size: 25px;
+    color: #557C28;
 }   
 
 
@@ -309,28 +322,26 @@ header a:hover {
 .promotions_container {
     padding: 100px 50px;
     display: flex;
-    gap: 50px;
-
 }
 
 .promotions_container p {
     font-size: 25px;
+    text-align: center;
+    z-index: 2;
 }
+
 
 .promotion_picture{
     flex: 1;
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
     display:flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-.promotion_picture svg{
-    width: 300px;
-    height:300px;
+.promotion_picture img{
+    border-radius: 30px;
+    height:500px
 }
 
 .promotion_text{
@@ -343,6 +354,14 @@ header a:hover {
     gap: 20px;
 }
 
+.promotion_text h2{
+    font-size:40px;
+}
+
+.promotion_text p{
+    text-align: justify;
+}
+
 .social_media_buttons{
     display: flex;
     width: 100%;
@@ -353,18 +372,16 @@ header a:hover {
 a.button {
     display: flex;
     padding: 1px 6px;
-    border-radius: 10px;
-    color: white;
+    border-radius: 50px;
     font-size: 25px;
     font-weight: bold;
-    background-color: buttonface;
     text-decoration: none;
     flex : 1;
     text-align: center;
     align-items: center;
     justify-content: center;
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 30px;
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -374,12 +391,14 @@ a.button:hover{
 
 /* #1877F2  */
 
+
 .social_media_buttons :first-child {
-    background-color: #1877F2;
+    color: #42601F;
 }
 
-.social_media_buttons :nth-child(2) {
-    background:linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+.social_media_buttons :nth-child(2) svg {
+    /*background-color: #F5F0E7;*/
+    height : 80px;
 }
 
 
@@ -410,7 +429,7 @@ a.button:hover{
     margin-bottom: var(--gap-lg);
   }
   .store-card{
-    background: var(--cream-alt);
+    background: #EEF6E3 /*var(--cream-alt)*/ ;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     overflow: hidden;
@@ -432,19 +451,41 @@ a.button:hover{
     padding: 20px 50px;
     display: flex;
     gap: 50px;
-    justify-content: center;
   }
 
+  
   .detail{
     display: flex;
-    align-items: center;
+    flex:1;
+    align-items: flex-start;
+    justify-content: center;
     gap: 10px;
+    width: 100%;
+  }
+  .detail svg{
+    width: 40px;
+    height: 40px;
+  }
+
+.detail table {
+  border-collapse: separate;
+  border-spacing: 0; /* 0 horizontal, 10px vertical */
+}
+/*
+  .detail_text h3{
+    font-size: 25px;
+    
+  }
+
+  .detail svg{
+    width: 40px;
+    height: 40px;
   }
 
   .detail p{
     font-size: 20px;
   }
-
+*/
   footer{
     background-color: black;
     color: white;
@@ -453,7 +494,246 @@ a.button:hover{
     font-size: 14px;
   }
 
+  span{
+    color: #83c03f;
+    font-weight: bold;
+  }
 
+
+@media screen and (width<=1550px) {
+
+    header,.home, .statistics {
+        margin-left: 120px;
+        margin-right: 120px;
+    }
+
+    .home_explaining h1{
+        font-size: 60px;
+    }
+
+    .home_explaining p{
+        font-size: 20px;
+    }
+    .home_picture{
+        height: 400px; /* hauteur fixe */
+    }
+
+    .logo_part a img{
+        width: 80px;
+    }
+}
+
+@media screen and (width<=1400px) {
+
+
+    header,.home, .statistics {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    .home_explaining h1{
+        font-size: 50px;
+    }
+
+    .home_explaining p{
+        font-size: 15px;
+    }
+    .home_picture{
+        height: 300px; /* hauteur fixe */
+    }
+
+    .nav_part {
+        column-gap: 30px;
+    }
+    .nav_part a {
+        font-size: 15px; 
+        gap: 8px;
+    }
+    .logo_part a img{
+        width: 80px;
+    }
+}
+
+@media screen and (width<=1300px) {
+
+    header,.home, .statistics {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .home_explaining h1{
+        font-size: 40px;
+    }
+
+    .home_explaining p{
+        font-size: 15px;
+    }
+    .home_picture{
+        height: 200px; /* hauteur fixe */
+    }
+
+    .nav_part {
+        column-gap: 30px;
+    }
+    .nav_part a {
+        font-size: 15px; 
+        gap: 8px;
+    }
+    .logo_part a img{
+        width: 80px;
+    }
+
+    .statistics_item h2 {
+        font-size: 30px;
+    }
+
+    .statistics_item p {
+        margin: 0;
+        font-size: 22px;
+        color: #557C28;
+    } 
+}
+
+@media screen and (width<=1200px) {
+
+    header,.home, .statistics {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .home_explaining h1{
+        font-size: 40px;
+    }
+
+    .home_explaining p{
+        font-size: 15px;
+    }
+    .home_picture{
+        height: 220px; /* hauteur fixe */
+    }
+
+    .nav_part {
+        column-gap: 30px;
+    }
+    .nav_part a {
+        font-size: 15px; 
+        gap: 8px;
+    }
+
+    .logo_part a img{
+        width: 70px;
+    }
+}
+
+@media screen and (width<=1100px) {
+
+    header,.home, .statistics {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .home_explaining h1{
+        font-size: 40px;
+    }
+
+    .home_explaining p{
+        font-size: 15px;
+    }
+    .home_picture{
+        height: 220px; /* hauteur fixe */
+    }
+
+    .nav_part {
+        column-gap: 30px;
+    }
+    .nav_part a {
+        font-size: 15px; 
+        gap: 8px;
+    }
+    .logo_part a img{
+        width: 75px;
+    }
+
+    .statistics_item h2 {
+        font-size: 25px;
+    }
+
+    .statistics_item p {
+        font-size: 20px;
+    } 
+}
+
+@media screen and (width<=1000px) {
+
+    header,.home, .statistics {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .home_explaining h1{
+        font-size: 30px;
+    }
+
+    .home_explaining p{
+        font-size: 15px;
+    }
+    .home_picture{
+        height: 230px; /* hauteur fixe */
+    }
+
+    .nav_part {
+        column-gap: 30px;
+    }
+    .nav_part a {
+        font-size: 15px; 
+        gap: 8px;
+    }
+
+    .logo_part a img{
+        width: 70px;
+    }
+
+    .statistics_item h2 {
+        font-size: 20px;
+    }
+
+    .statistics_item p {
+        font-size: 15px;
+    } 
+}
+
+@media screen and (width<=900px) {
+
+    header,.home, .statistics {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .home_explaining h1{
+        font-size: 30px;
+    }
+
+    .home_explaining p{
+        font-size: 15px;
+    }
+    .home_picture{
+        height: 230px; /* hauteur fixe */
+    }
+
+    .nav_part {
+        column-gap: 30px;
+    }
+    .nav_part a {
+        font-size: 15px; 
+        gap: 8px;
+    }
+    .logo_part a img{
+        width: 65px;
+    }
+}
+
+
+/* =============== MOBILE =============== */
 @media screen and (max-width: 800px) {
     header,
     .home, 
@@ -542,6 +822,11 @@ a.button:hover{
 
     .home_picture{
         height: 300px; /* hauteur fixe */
+    }
+
+    .slides img{
+        width: 100%;
+        height: 300px;
     }
 
     .home_explaining h1{
