@@ -230,6 +230,7 @@ header a:hover {
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
+    flex-shrink: 0;
 }
 
 @keyframes slide {
@@ -894,7 +895,7 @@ a.button svg {
     }
 
     .slides img{
-        width: 100%;
+        width: 50%;
         height: 300px;
     }
 
