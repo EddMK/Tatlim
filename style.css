@@ -459,7 +459,7 @@ a.button svg {
   .detail{
     display: flex;
     flex:1;
-    /*align-items: flex-start;*/
+    align-items: flex-start;
     justify-content: center;
     /*gap: 10px;*/
     width: 100%;
@@ -467,7 +467,7 @@ a.button svg {
   .detail svg{
     width: 35px;
     height: 35px;
-    padding-right: 10px;
+    /*padding-right: 10px;*/
   }
 
 .detail table {
@@ -964,20 +964,18 @@ a.button svg {
         padding: 50px 20px;
     }
 
-      .contact-details{
+    .contact-details{
             margin-left: 0px;
             margin-right: 0px;
             display: flex;
-            padding: 20px 20px;
-            gap: 20px;
-            justify-content: center;
+            /*padding: 20px 20px;*/
+            /*gap: 20px;*/
             flex-direction: column;
-        }
+    }
 
   .detail{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .detail svg{
