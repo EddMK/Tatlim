@@ -307,12 +307,12 @@ header a:hover {
     content:'';
     height:1em;
     width:1em;
-    background-color:green;
+    background-color:#C1E09F;
     border-radius:50%;
 }
 
 .card::scroll-marker:target-current{
-    background-color:red;
+    background-color: #83c03f;
 }
 
 .carousel::-webkit-scrollbar{
@@ -322,10 +322,10 @@ header a:hover {
 .carousel::scroll-button(right), .carousel::scroll-button(left){
     content:'→';
     border:none;
-    background-color:green;
+    background-color:#83c03f;
     font-family:Consolas;
     font-size:3rem;
-    color:red;
+    color:white;
     height:60px;
     width:60px;
     border-radius:50%;
