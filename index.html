@@ -69,13 +69,13 @@
     <header>
         <div class="header_container">
             <div class="logo_part">
-                <a href="#" class="logo"><img src="Logo sans titre transparent.png" alt="logo"></a>
+                <a href="#home" class="logo"><img src="Logo sans titre transparent.png" alt="logo"></a>
             </div>
             <div class="nav_part">
-                <a class="active" href="#">Accueil</a>
-                <a href="#">Produits</a>
-                <a href="#">Suivez-Nous</a>
-                <a href="#">Contact</a>
+                <a class="active" href="#home">Accueil</a>
+                <a href="#products">Produits</a>
+                <a href="#promotions">Suivez-Nous</a>
+                <a href="#contact">Contact</a>
             </div>
             <div class="header_actions">
                 <div class="language_part">
@@ -100,7 +100,7 @@
         </div>
     </header>
 
-    <div class="home">
+    <div class="home" id="home">
         <div class="home_container">
             <div class ="home_explaining">
                 <h1>
@@ -147,23 +147,38 @@
         </div>
     </div>
 
-    <div class = "products">
+    <div class = "products" id="products">
         <div class="products_container">
-            <div class = "carousel">
-                <div class="card"><img src="produit/produit_one.jpg" alt="product_one"></div>
-                <div class="card"><img src="produit/product_two.jpg" alt="product_two"></div>
-                <div class="card"><img src="produit/product_three.jpg" alt="product_three"></div>
-                <div class="card"><img src="produit/product_four.webp" alt="product_four"></div>
-                <div class="card"><img src="produit/product_five.webp" alt="product_five"></div>
-                <div class="card"><img src="produit/product_six.webp" alt="product_six"></div>
-                <div class="card"><img src="produit/product_seven.jpg" alt="product_seven"></div>
-                <div class="card"><img src="produit/product_eight.jpg" alt="product_eight"></div>
-                <div class="card"><img src="produit/product_nine.jpg" alt="product_nine"></div>
+            <div class="carousel-wrapper">
+                <button class="carousel-button left" aria-label="Produit précédent">←</button>
+                <div class = "carousel">
+                    <div class="card"><img src="produit/produit_one.jpg" alt="product_one"></div>
+                    <div class="card"><img src="produit/product_two.jpg" alt="product_two"></div>
+                    <div class="card"><img src="produit/product_three.jpg" alt="product_three"></div>
+                    <div class="card"><img src="produit/product_four.webp" alt="product_four"></div>
+                    <div class="card"><img src="produit/product_five.webp" alt="product_five"></div>
+                    <div class="card"><img src="produit/product_six.webp" alt="product_six"></div>
+                    <div class="card"><img src="produit/product_seven.jpg" alt="product_seven"></div>
+                    <div class="card"><img src="produit/product_eight.jpg" alt="product_eight"></div>
+                    <div class="card"><img src="produit/product_nine.jpg" alt="product_nine"></div>
+                </div>
+                <button class="carousel-button right" aria-label="Produit suivant">→</button>
+            </div>
+            <div class="carousel-indicators">
+                <button class="indicator active" aria-label="Produit 1"></button>
+                <button class="indicator" aria-label="Produit 2"></button>
+                <button class="indicator" aria-label="Produit 3"></button>
+                <button class="indicator" aria-label="Produit 4"></button>
+                <button class="indicator" aria-label="Produit 5"></button>
+                <button class="indicator" aria-label="Produit 6"></button>
+                <button class="indicator" aria-label="Produit 7"></button>
+                <button class="indicator" aria-label="Produit 8"></button>
+                <button class="indicator" aria-label="Produit 9"></button>
             </div>
         </div>
     </div>
 
-    <div class="promotions">
+    <div class="promotions" id="promotions">
         <div class="promotions_container">
             <div class="promotion_picture">
                 <img id="imagePromotion" src="promotion/one.jpg" alt="promotion_one">
@@ -190,7 +205,7 @@
         </div>
     </div>
 
-    <div class="contact">
+    <div class="contact" id="contact">
         <div class="contact_container">
             <div class="store-card">
                 <iframe class="map-frame" loading="lazy" title="Carte du magasin Jette" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5035.334099354842!2d4.325437758691405!3d50.87436340000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c3c3fa81b0e9%3A0x2a81df68cfa00fa4!2sTatli'm%20Supermarket!5e0!3m2!1sfr!2sbe!4v1788186786232!5m2!1sfr!2sbe"></iframe>
@@ -289,6 +304,80 @@
         index = (index + 1) % images.length;
         image.src = images[index];
     }, 3000);
+
+    const carousel = document.querySelector('.carousel');
+const cards = document.querySelectorAll('.card');
+
+const prevButton = document.querySelector('.carousel-button.left');
+const nextButton = document.querySelector('.carousel-button.right');
+
+const indicators = document.querySelectorAll('.indicator');
+
+
+function updateCarousel() {
+
+    const scrollLeft = carousel.scrollLeft;
+    const cardWidth = cards[0].offsetWidth + 16;
+
+    const currentIndex = Math.round(scrollLeft / cardWidth);
+
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle(
+            'active',
+            index === currentIndex
+        );
+    });
+
+    prevButton.disabled = currentIndex === 0;
+
+    nextButton.disabled = currentIndex === cards.length - 1;
+}
+
+
+nextButton.addEventListener('click', () => {
+
+    const currentIndex =
+        Math.round(carousel.scrollLeft / (cards[0].offsetWidth + 16));
+
+    cards[currentIndex + 1]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start'
+    });
+});
+
+
+prevButton.addEventListener('click', () => {
+
+    const currentIndex =
+        Math.round(carousel.scrollLeft / (cards[0].offsetWidth + 16));
+
+    cards[currentIndex - 1]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start'
+    });
+});
+
+
+indicators.forEach((indicator, index) => {
+
+    indicator.addEventListener('click', () => {
+
+        cards[index].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'start'
+        });
+
+    });
+
+});
+
+
+carousel.addEventListener('scroll', updateCarousel);
+
+updateCarousel();
 </script>
 </html>
 

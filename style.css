@@ -283,6 +283,10 @@ header a:hover {
     padding: 20px 50px;
 }
 
+.carousel-wrapper {
+    position: relative;
+}
+
 .carousel{
     display: flex;
     gap:1em;
@@ -295,56 +299,68 @@ header a:hover {
     scroll-marker-group:after;
 }
 
-.carousel::scroll-marker-group{
-    display:flex;
-    justify-content: center;
-    gap:.5em;
-}
-
-.card::scroll-marker{
-    content:'';
-    height:1em;
-    width:1em;
-    background-color:#DCEDC8;
-    border-radius:50%;
-}
-
-.card::scroll-marker:target-current{
-    background-color: #83c03f;
-}
-
 .carousel::-webkit-scrollbar{
     display:none;
 }
 
-.carousel::scroll-button(right), .carousel::scroll-button(left){
-    content:'→';
-    border:none;
-    background-color:#83c03f;
-    font-family:Consolas;
-    font-size:3rem;
-    color:white;
-    height:60px;
-    width:60px;
-    border-radius:50%;
-    padding-bottom:.1em;
-    cursor:pointer;
-    position:fixed;
-    position-anchor: --carousel;
-    position-area : right center;
-    translate:-50%;
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 10;
+
+    border: none;
+    background-color: #83c03f;
+    color: white;
+
+    font-family: Consolas;
+    font-size: 3rem;
+
+    height: 60px;
+    width: 60px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
 }
 
-.carousel::scroll-button(left){
-    content:'←';
-    position-area : left center;
-    translate:50%;
+.carousel-button.left {
+    left: 0;
 }
 
-.carousel::scroll-button(right):disabled, .carousel::scroll-button(left):disabled{
-    opacity:.5;
-    cursor:auto
+.carousel-button.right {
+    right: 0;
 }
+
+.carousel-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.indicator {
+    height: 1em;
+    width: 1em;
+
+    border: none;
+    padding: 0;
+
+    background-color: #DCEDC8;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.indicator.active {
+    background-color: #83c03f;
+}
+
 
 .card{
     scroll-snap-align: start;
