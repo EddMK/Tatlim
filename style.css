@@ -280,7 +280,12 @@ header a:hover {
 }
 
 .products_container {
-    padding: 20px 50px;
+    padding: 50px 50px;
+}
+
+.products_container h1 {
+    font-size: 50px;
+    text-align: center;
 }
 
 .carousel-wrapper {
@@ -1057,7 +1062,7 @@ a.button svg {
     .promotion_picture img{
         flex: 1;
         width: 100px;
-        height: 300px;
+        height: 400px;
         overflow: hidden;
         border-radius: 20px;
     }
