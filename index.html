@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tatli'm Supermarket</title>
+<link rel="icon" type="image/x-icon" href="Logo sans titre transparent.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -236,18 +238,19 @@
             <div class="carousel-wrapper">
                 <button class="carousel-button left" aria-label="Produit précédent">←</button>
                 <div class = "carousel">
-                    <div class="card"><img src="produit/produit_one.jpg" alt="product_one"></div>
-                    <div class="card"><img src="produit/product_two.jpg" alt="product_two"></div>
-                    <div class="card"><img src="produit/product_three.jpg" alt="product_three"></div>
-                    <div class="card"><img src="produit/product_four.webp" alt="product_four"></div>
-                    <div class="card"><img src="produit/product_five.webp" alt="product_five"></div>
-                    <div class="card"><img src="produit/product_six.webp" alt="product_six"></div>
-                    <div class="card"><img src="produit/product_seven.jpg" alt="product_seven"></div>
-                    <div class="card"><img src="produit/product_eight.jpg" alt="product_eight"></div>
-                    <div class="card"><img src="produit/product_nine.jpg" alt="product_nine"></div>
+                    <div class="card"><img src="produits/product_one.jpeg" alt="product_one"></div>
+                    <div class="card"><img src="produits/product_two.jpeg" alt="product_two"></div>
+                    <div class="card"><img src="produits/product_three.jpeg" alt="product_three"></div>
+                    <div class="card"><img src="produits/product_four.jpeg" alt="product_four"></div>
+                    <div class="card"><img src="produits/product_five.jpeg" alt="product_five"></div>
+                    <div class="card"><img src="produits/product_six.jpeg" alt="product_six"></div>
+                    <div class="card"><img src="produits/product_seven.jpeg" alt="product_seven"></div>
+                    <div class="card"><img src="produits/product_eight.jpeg" alt="product_eight"></div>
+                    <div class="card"><img src="produits/product_nine.jpeg" alt="product_nine"></div>
                 </div>
                 <button class="carousel-button right" aria-label="Produit suivant">→</button>
             </div>
+            <!---
             <div class="carousel-indicators">
                 <button class="indicator active" aria-label="Produit 1"></button>
                 <button class="indicator" aria-label="Produit 2"></button>
@@ -259,6 +262,7 @@
                 <button class="indicator" aria-label="Produit 8"></button>
                 <button class="indicator" aria-label="Produit 9"></button>
             </div>
+            -->
         </div>
     </div>
 
@@ -390,21 +394,22 @@
     }, 3000);
 
     const carousel = document.querySelector('.carousel');
-const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card');
 
-const prevButton = document.querySelector('.carousel-button.left');
-const nextButton = document.querySelector('.carousel-button.right');
+    const prevButton = document.querySelector('.carousel-button.left');
+    const nextButton = document.querySelector('.carousel-button.right');
 
-const indicators = document.querySelectorAll('.indicator');
+    const indicators = document.querySelectorAll('.indicator');
 
 
 function updateCarousel() {
-
+    /*console.log("cards.length",cards.length)*/
     const scrollLeft = carousel.scrollLeft;
+    console.log("scrollLeft",scrollLeft);
     const cardWidth = cards[0].offsetWidth + 16;
-
+    console.log("cardWidth",cardWidth);
     const currentIndex = Math.round(scrollLeft / cardWidth);
-
+    console.log("currentIndex",currentIndex);
     indicators.forEach((indicator, index) => {
         indicator.classList.toggle(
             'active',
@@ -413,8 +418,10 @@ function updateCarousel() {
     });
 
     prevButton.disabled = currentIndex === 0;
+    console.log("windows width",window.innerWidth);
 
-    nextButton.disabled = currentIndex === cards.length - 1;
+    if(window.innerWidth<800) nextButton.disabled = currentIndex === cards.length - 1;
+    nextButton.disabled = currentIndex === cards.length - 2;
 }
 
 

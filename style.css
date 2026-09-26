@@ -30,14 +30,18 @@
 body { 
   margin: 0;
   font-family: "Google Sans Flex", sans-serif;
-  /*background-color: #F5F0E7;*/
+  background-color: #F5F0E7;
 }
 
 header {
-  /*background-color: #EAF5DF;*/
     margin-left: 150px;
     margin-right: 150px;
+    position: sticky;
+    top: 0;
+    background-color: #F5F0E7;
+    z-index: 1000;
     /*background-color: #F5F0E7;*/
+    /*background-color: #EAF5DF;*/
 }
 
 .header_container {
@@ -316,8 +320,8 @@ header a:hover {
     z-index: 10;
 
     border: none;
-    background-color: #83c03f;
-    color: white;
+    color : #EAF5DF;
+    background-color: #5E8A2D;
 
     font-family: Consolas;
     font-size: 3rem;
@@ -374,7 +378,7 @@ header a:hover {
     border-radius:1em;
     text-align:center;
     align-content:center;
-    flex : 0 0 47em;
+    flex : 0 0 50%;
 }
 
 .card img{
@@ -696,6 +700,10 @@ a.button svg {
     .promotion_text p{
         font-size: 17px;
     }
+
+    .card{
+        flex:0 0 50%;
+    }
 }
 
 @media screen and (width<=1300px) {
@@ -747,7 +755,7 @@ a.button svg {
 
     .card{
         flex:0 0 50%;
-   }
+    }
 }
 
 @media screen and (width<=1200px) {
@@ -841,8 +849,8 @@ a.button svg {
     }
 
     .card{
-    flex:0 0 100%;
-   }
+        flex:0 0 50%;
+    }
 }
 
 @media screen and (width<=1000px) {
@@ -921,7 +929,7 @@ a.button svg {
     }
 
     .card{
-    flex:0 0 100%;
+        flex:0 0 50%;
    }
 }
 
