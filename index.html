@@ -213,20 +213,20 @@
 
     <div class="statistics">
         <div class="statistics_container">
-            <div class="statistics_item">
-                <h2>15 000</h2>
+            <div class="statistics_item" id="item_product">
+                <h2><span>15 000</span></h2>
                 <p id="lg_produitsdisponibles">Produits disponibles</p>
             </div>
-            <div class="statistics_item">
-                <h2>10</h2>
+            <div class="statistics_item" id="item_experience">
+                <h2><span>10</span></h2>
                 <p id="lg_anneesexperience">Années d'expérience</p>
             </div>
-            <div class="statistics_item">
-                <h2>2</h2>
+            <div class="statistics_item" id="item_magasin">
+                <h2><span>2</span></h2>
                 <p id="lg_magasins">Magasins</p>
             </div>
-            <div class="statistics_item">
-                <h2>100 000</h2>
+            <div class="statistics_item" id="item_clients">
+                <h2><span>100 000</span></h2>
                 <p id="lg_clientsmois">Clients / mois</p>
             </div>
         </div>
@@ -234,7 +234,7 @@
 
     <div class = "products" id="products">
         <div class="products_container">
-            <h1 id="lg_produitstitle">Nos produits</h1>
+            <h2 id="lg_produitstitle">Nos produits</h2>
             <div class="carousel-wrapper">
                 <button class="carousel-button left" aria-label="Produit précédent">←</button>
                 <div class = "carousel">
@@ -371,7 +371,6 @@
 </body>
 <script>
     const image = document.querySelector("#imagePromotion");
-    console.log(image)
 
     const images = [
         "promotion/one.jpg",
@@ -403,13 +402,9 @@
 
 
 function updateCarousel() {
-    /*console.log("cards.length",cards.length)*/
     const scrollLeft = carousel.scrollLeft;
-    console.log("scrollLeft",scrollLeft);
     const cardWidth = cards[0].offsetWidth + 16;
-    console.log("cardWidth",cardWidth);
     const currentIndex = Math.round(scrollLeft / cardWidth);
-    console.log("currentIndex",currentIndex);
     indicators.forEach((indicator, index) => {
         indicator.classList.toggle(
             'active',
@@ -418,7 +413,6 @@ function updateCarousel() {
     });
 
     prevButton.disabled = currentIndex === 0;
-    console.log("windows width",window.innerWidth);
 
     if(window.innerWidth<800) nextButton.disabled = currentIndex === cards.length - 1;
     nextButton.disabled = currentIndex === cards.length - 2;
@@ -469,6 +463,127 @@ indicators.forEach((indicator, index) => {
 carousel.addEventListener('scroll', updateCarousel);
 
 updateCarousel();
+
+const item_product = document.getElementById("item_product");
+item_product.addEventListener("animationstart", () => {
+
+    let start = 0;
+    const target = 15000;
+    const duration = 2000; // 2 secondes
+    const startTime = performance.now();
+
+    function updateCount(currentTime) {
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const count = Math.floor(progress * target);
+
+        const span = item_product.querySelector("span");
+        span.innerText = count.toLocaleString("fr-FR");;
+
+        if (progress < 1) {
+            requestAnimationFrame(updateCount);
+        } else {
+            span.innerText = target.toLocaleString("fr-FR");
+        }
+    }
+
+    requestAnimationFrame(updateCount);
+});
+
+
+
+
+const item_experience = document.getElementById("item_experience");
+item_experience.addEventListener("animationstart", () => {
+
+    let start = 0;
+    const target = 10;
+    const duration = 2000; // 2 secondes
+    const startTime = performance.now();
+
+    function updateCount(currentTime) {
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const count = Math.floor(progress * target);
+
+        const span = item_experience.querySelector("span");
+        span.innerText = count.toLocaleString("fr-FR");;
+
+        if (progress < 1) {
+            requestAnimationFrame(updateCount);
+        } else {
+            span.innerText = target.toLocaleString("fr-FR");
+        }
+    }
+
+    requestAnimationFrame(updateCount);
+});
+
+
+
+const item_magasin = document.getElementById("item_magasin");
+item_magasin.addEventListener("animationstart", () => {
+
+    let start = 0;
+    const target = 2;
+    const duration = 2000; // 2 secondes
+    const startTime = performance.now();
+
+    function updateCount(currentTime) {
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const count = Math.floor(progress * target);
+
+        const span = item_magasin.querySelector("span");
+        span.innerText = count.toLocaleString("fr-FR");;
+
+        if (progress < 1) {
+            requestAnimationFrame(updateCount);
+        } else {
+            span.innerText = target.toLocaleString("fr-FR");
+        }
+    }
+
+    requestAnimationFrame(updateCount);
+});
+
+
+
+const item_clients = document.getElementById("item_clients");
+item_clients.addEventListener("animationstart", () => {
+
+    let start = 0;
+    const target = 100000;
+    const duration = 2000; // 2 secondes
+    const startTime = performance.now();
+
+    function updateCount(currentTime) {
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const count = Math.floor(progress * target);
+
+        const span = item_clients.querySelector("span");
+        span.innerText = count.toLocaleString("fr-FR");;
+
+        if (progress < 1) {
+            requestAnimationFrame(updateCount);
+        } else {
+            span.innerText = target.toLocaleString("fr-FR");
+        }
+    }
+
+    requestAnimationFrame(updateCount);
+});
+
+
 </script>
 </html>
 

@@ -1,0 +1,8 @@
+- animations
+- les statistiques remettre au verical avec un width plus bas.
+- la taille de l'image des promotions à réadapter
+- ajouter des couleurs aux détails 
+- mettre le lien vers l'adresse mail
+- header mobile mettre le bouton des langues en vert avec celui du menu
+- l'apparition du menu découlant mobile avec animation
+- la taille du bouton langue à revoir 
