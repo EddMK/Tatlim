@@ -305,20 +305,44 @@ header a:hover {
     padding: 50px 50px;
 }
 
+@keyframes appear{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .products_container h2 {
     font-size: 50px;
     text-align: center;
+    /*
+    animation : appear linear;
+    animation-timeline : view();
+    animation-range : entry 0% cover 40%;
+    */
 }
+
+
 
 .carousel-wrapper {
     position: relative;
+    /*
+    animation : appear linear;
+    animation-timeline : view();
+    animation-range : entry 0% cover 40%;
+    */
 }
 
 .carousel{
     display: flex;
     gap:1em;
     margin:3em auto;
-    width:100%;
+    width:90%;
     overflow-x: auto;
     scroll-behavior: smooth;
     anchor-name : --carousel;
@@ -453,7 +477,7 @@ header a:hover {
 }
 
 .statistics_item:nth-of-type(1){
-    animation: increaseContent 2s ease-out 2s both ;
+    animation: increaseContent 2s ease-out 1s both ;
 }
 
 .statistics_item:nth-of-type(2){
@@ -482,18 +506,6 @@ header a:hover {
     }
 }
 
-
-@keyframes increaseContentTwo{
-    0% {
-        visibility: hidden;
-    }
-
-    100% {
-        visibility: visible;
-    }
-}
-
-
 .promotions {
     margin-left: 150px;
     margin-right: 150px;
@@ -515,16 +527,16 @@ header a:hover {
 .promotion_picture{
     flex: 1;
     display:flex;
-    justify-content: left;
-    align-items: left;
-    text-align: left;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     
 }
 
 .promotion_picture img{
     border-radius: 50px;
     height:500px;
-    width: 100%;
+    width: 80%;
 }
 
 .promotion_text{
@@ -647,6 +659,7 @@ a.button svg {
   .detail svg{
     width: 35px;
     height: 35px;
+    color : #83c03f;
     /*padding-right: 10px;*/
   }
 
@@ -667,21 +680,18 @@ a.button svg {
     vertical-align: top;
 }
 
-/*
-  .detail_text h3{
-    font-size: 25px;
-    
-  }
+.detail table tr:nth-child(1) td:nth-child(1)  {
+    padding-right: 20px; /* espace entre l'icône et le texte */
+}
 
-  .detail svg{
-    width: 40px;
-    height: 40px;
-  }
+.detail table tr:nth-child(2) td:nth-child(2)  {
+    color: #494949;
+}
 
-  .detail p{
-    font-size: 20px;
-  }
-*/
+.link_mail {
+    color: #494949;
+    text-decoration: none;
+}
   footer{
     background-color: black;
     color: white;
@@ -775,6 +785,12 @@ a.button svg {
 
     .card{
         flex:0 0 50%;
+    }
+
+    .carousel-button {
+        height: 40px;
+        width: 40px;
+        font-size: 2rem;
     }
 }
 
@@ -970,6 +986,12 @@ a.button svg {
     .statistics_item p {
         font-size: 15px;
     } 
+/*
+    .carousel-button {
+        height: 30px;
+        width: 30px;
+        font-size: 1rem;
+    }*/
 }
 
 @media screen and (width<=900px) {
@@ -1137,12 +1159,13 @@ a.button svg {
     .promotions_container {
         flex-direction: column;
         padding: 50px 20px;
+        align-items: center;
+        justify-content: center;
+        text-justify: center;
     }
 
     .promotion_picture{
-        flex: 1;
-        width: 100%;
-        height: 200px;
+        width: 80%;
         overflow: hidden;
         border-radius: 20px;
         display: flex;
@@ -1152,8 +1175,7 @@ a.button svg {
     }
 
     .promotion_picture img{
-        flex: 1;
-        width: 100px;
+        width: 100%;
         height: 400px;
         overflow: hidden;
         border-radius: 20px;
@@ -1212,6 +1234,8 @@ a.button svg {
    }
 
    .card{
-    flex:0 0 100%;
+    height: 400px;
+    width: 100%;
+    /*flex:0 0 100%;*/
    }
 }
