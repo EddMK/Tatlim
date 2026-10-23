@@ -164,7 +164,7 @@
             <div class="logo_part">
                 <a href="#home" class="logo"><img src="Logo sans titre transparent.png" alt="logo"></a>
             </div>
-            <div class="nav_part">
+            <div class="nav_part" id="list_liens">
                 <a class="active" href="#home" id="lg_accueil">Accueil</a>
                 <a href="#products" id="lg_produits">Produits</a>
                 <a href="#promotions" id="lg_promotions">Suivez-Nous</a>
@@ -378,7 +378,7 @@
     setInterval(() => {
         index = (index + 1) % images.length;
         image.src = images[index];
-    }, 3000);
+    }, 2000);
 
     const carousel = document.querySelector('.carousel');
     const cards = document.querySelectorAll('.card');
@@ -399,11 +399,10 @@ function updateCarousel() {
             index === currentIndex
         );
     });
-
     prevButton.disabled = currentIndex === 0;
 
-    if(window.innerWidth<800) nextButton.disabled = currentIndex === cards.length - 1;
-    nextButton.disabled = currentIndex === cards.length - 2;
+    if(window.innerWidth<800) nextButton.disabled = currentIndex === cards.length -1 ;
+    else nextButton.disabled = currentIndex === cards.length - 2;
 }
 
 
@@ -571,6 +570,15 @@ item_clients.addEventListener("animationstart", () => {
     requestAnimationFrame(updateCount);
 });
 
+    const liste = document.querySelector(".nav_part");
+    liste.addEventListener("click", function(event) {
+       if(screen.width < 800){
+        var navPart = document.querySelector('.nav_part');
+        var menubutton = document.querySelector('.menu_button');
+        navPart.style.display = "none";
+        menubutton.classList.toggle("change");
+       }
+    });
 
 </script>
 </html>

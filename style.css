@@ -121,7 +121,7 @@ header a:hover {
     margin: 0;
     padding: 0;
     min-width: 100px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    /*box-shadow: 0 4px 8px rgba(0,0,0,0.15);*/
     z-index: 10;
 }
 
@@ -1071,6 +1071,10 @@ a.button svg {
         display: inline-block;
     }
 
+    .menu_button div{
+        background-color: #83c03f;
+    }
+
     .logo_part {
         display: flex;
         justify-content: flex-start;
@@ -1096,6 +1100,20 @@ a.button svg {
         position: absolute;
         top: 100%;
         background-color: #f8f9fa;
+        transform-origin: top;
+        animation: apparitionMenu 0.5s ease-out forwards;
+    }
+
+    @keyframes apparitionMenu {
+        from {
+            opacity: 0;
+            transform: scaleY(0);
+        }
+
+        to {
+            opacity: 1;
+            transform: scaleY(1);
+        }
     }
 
     .nav_part a {
@@ -1108,6 +1126,15 @@ a.button svg {
 
     .nav_part.active {
         display: flex;
+    }
+
+    .dropdown {
+        border-radius: 10px;
+    }
+
+    .dropdown a span {
+        color : #83c03f;
+        font-weight: bold;
     }
 
     .dropdown .dropdown_menu {
@@ -1147,13 +1174,6 @@ a.button svg {
     .home_explaining p{
         font-size: 15px;
         text-align: justify;
-    }
-
-    .statistics_container {
-        padding: 50px 20px;
-        display: flex;
-        gap: 50px;
-        flex-direction: column;
     }
 
     .promotions_container {
@@ -1234,8 +1254,24 @@ a.button svg {
    }
 
    .card{
-    height: 400px;
-    width: 100%;
-    /*flex:0 0 100%;*/
+        flex:0 0 100%;
    }
+}
+
+
+@media screen and (max-width: 500px) {
+
+    .statistics_container {
+        padding: 50px 20px;
+        display: flex;
+        gap: 50px;
+        flex-direction: column;
+    }
+
+    .card{
+        height: 400px;
+        width: 100%;
+        /*flex:0 0 100%;*/
+   }
+
 }
